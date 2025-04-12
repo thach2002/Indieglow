@@ -208,39 +208,5 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>AOS.init();</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-  AOS.init();
-
-  const searchInput = document.querySelector('.filter-bar input');
-  const genreSelect = document.querySelector('.filter-bar select:nth-of-type(1)');
-  const platformSelect = document.querySelector('.filter-bar select:nth-of-type(2)');
-  const gameCards = document.querySelectorAll('.game-card');
-
-  function filterGames() {
-    const search = searchInput.value.toLowerCase();
-    const genre = genreSelect.value;
-    const platform = platformSelect.value;
-
-    gameCards.forEach(card => {
-      const title = card.querySelector('h3').textContent.toLowerCase();
-      const details = card.querySelector('p').textContent;
-
-      const matchesTitle = title.includes(search);
-      const matchesGenre = genre ? details.includes(genre) : true;
-      const matchesPlatform = platform ? details.includes(platform) : true;
-
-      if (matchesTitle && matchesGenre && matchesPlatform) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  }
-
-  searchInput.addEventListener('input', filterGames);
-  genreSelect.addEventListener('change', filterGames);
-  platformSelect.addEventListener('change', filterGames);
-</script>
 </body>
 </html>
