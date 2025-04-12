@@ -25,6 +25,20 @@
       font-size: 1.2rem;
       color: #e0e7ff;
     }
+    nav {
+      background-color: #1e293b;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: #60a5fa;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
     .features {
       max-width: 960px;
       margin: 2rem auto;
@@ -41,6 +55,22 @@
       margin-top: 0;
       color: #60a5fa;
     }
+    .cta {
+      text-align: center;
+      margin: 3rem 0;
+    }
+    .cta button {
+      background: linear-gradient(to right, #3b82f6, #9333ea);
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .cta button:hover {
+      opacity: 0.9;
+    }
     footer {
       background: #1e293b;
       text-align: center;
@@ -55,7 +85,14 @@
     <h1>Indieglow</h1>
     <p>Let your game shine — Discover. Connect. Grow.</p>
   </header>
-  <section class="features">
+
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="#newsletter">Newsletter</a>
+  </nav>
+
+  <section id="features" class="features">
     <div class="feature">
       <h2>🌟 Showcase Your Game</h2>
       <p>Create a profile for your indie game with trailers, screenshots, and a compelling story.</p>
@@ -73,9 +110,25 @@
       <p>Access simplified guides for publishing rules by platform and country.</p>
     </div>
   </section>
+
+  <section id="about" class="features">
+    <div class="feature">
+      <h2>About Indieglow</h2>
+      <p>Indieglow is a platform designed to empower indie game developers by giving them the tools they need to succeed. From marketing support and influencer outreach to simplified regulatory help, we’ve got your back — so you can focus on making awesome games.</p>
+    </div>
+  </section>
+
+  <section id="newsletter" class="cta">
+    <h2>Stay in the Loop</h2>
+    <p>Subscribe to get updates, tips, and featured games.</p>
+    <form action="https://formspree.io/f/moqodwkk" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" required style="padding: 0.5rem; width: 250px; border-radius: 4px; border: none; margin-right: 10px;">
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
   <footer>
     &copy; 2025 Indieglow. Helping indie developers shine.
   </footer>
 </body>
 </html>
-
