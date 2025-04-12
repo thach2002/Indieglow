@@ -1,1144 +1,134 @@
+
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='UTF-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title>Indieglow - Full Ecosystem</title>
-  <link href='https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap' rel='stylesheet'>
-  <link href='https://unpkg.com/aos@2.3.1/dist/aos.css' rel='stylesheet'>
-  <script src='https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js'></script>
-  <script src='https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js'></script>
-  <script src='https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js'></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Indieglow - Let Your Game Shine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script defer src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
   <style>
-    body { margin: 0; background-color: #0f172a; color: #f8fafc; font-family: 'Rubik', sans-serif; }
+    body { margin: 0; font-family: 'Rubik', sans-serif; background: #0f172a; color: #f8fafc; }
     header, nav, section, footer { padding: 2rem; text-align: center; }
+    header img { width: 200px; }
     nav a { margin: 0 1rem; color: #60a5fa; text-decoration: none; font-weight: bold; }
-    .container { max-width: 960px; margin: auto; padding: 1rem; }
-    .card { background: #1e293b; border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
-    input, textarea, button { width: 100%; padding: 0.8rem; margin: 0.5rem 0; border-radius: 8px; border: none; }
+    .feature, .form-box, .team-member, .game-card, .influencer-card, .message-card, .dashboard-card {
+      background: #1e293b; border-radius: 12px; margin: 1rem auto; padding: 1.5rem; max-width: 800px;
+    }
+    .team-member img, .influencer-card img { border-radius: 50%; width: 100px; height: 100px; object-fit: cover; }
+    input, textarea, button { width: 100%; margin: 0.5rem 0; padding: 0.8rem; border-radius: 8px; border: none; }
     button { background: #3b82f6; color: white; cursor: pointer; }
-    .grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-    .team-member img { border-radius: 50%; width: 100px; height: 100px; object-fit: cover; }
+    .gallery-grid, .promo-list, .chat-box, .dashboard { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .gallery-grid > div, .promo-list > div, .chat-box > div, .dashboard > div { flex: 1 1 300px; }
   </style>
 </head>
 <body>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<section class='container'>
-  <div class='card'>
-    <h2>Section Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    <div class='card'><h3>Subsection 1</h3><p>This is a description for subsection 1 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 2</h3><p>This is a description for subsection 2 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 3</h3><p>This is a description for subsection 3 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 4</h3><p>This is a description for subsection 4 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-    <div class='card'><h3>Subsection 5</h3><p>This is a description for subsection 5 in this feature section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></div>
-  </div>
-</section>
-<footer><p>&copy; 2025 Indieglow. All rights reserved.</p></footer>
+  <header data-aos="fade-down">
+    <img src="indieglow-logo.png" alt="Indieglow Logo" />
+    <h1>Indieglow</h1>
+    <p>Empowering indie game creators to shine through discovery, marketing, and influencer collaboration.</p>
+  </header>
 
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyB-EXAMPLE",
-    authDomain: "indieglow-app.firebaseapp.com",
-    projectId: "indieglow-app",
-    storageBucket: "indieglow-app.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abcdef123456"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  const auth = firebase.auth();
-</script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init();</script>
+  <nav data-aos="fade-up">
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="#team">Team</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#submit">Submit</a>
+    <a href="#influencers">Influencers</a>
+    <a href="#campaigns">Campaigns</a>
+    <a href="#chat">Chat</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
+  <section id="features" class="feature" data-aos="fade-right">
+    <h2>🌟 Key Features</h2>
+    <p>Showcase your game, connect with influencers, and manage marketing campaigns all in one place.</p>
+  </section>
+
+  <section id="about" class="feature" data-aos="fade-left">
+    <h2>🧠 About Indieglow</h2>
+    <p>Indieglow is a platform built for indie game developers who face discoverability issues and need marketing support. Our mission is to bring visibility, growth, and monetization opportunities to passionate creators around the world.</p>
+  </section>
+
+  <section id="team" class="feature" data-aos="fade-right">
+    <h2>👥 Meet the Team</h2>
+    <div class="team-member"><img src="thach-nguyen.jpg" alt="Thach"><h3>Thach Nguyen</h3><p>Founder & Product Lead</p></div>
+    <div class="team-member"><img src="duyen-nguyen.jpg" alt="Duyen"><h3>Duyen Nguyen</h3><p>Marketing & Community</p></div>
+    <div class="team-member"><img src="ryan-tran.jpg" alt="Ryan"><h3>Ryan Tran</h3><p>Developer & UI/UX</p></div>
+  </section>
+
+  <section id="gallery" class="feature" data-aos="fade-up">
+    <h2>🎮 Game Gallery</h2>
+    <div class="gallery-grid" id="gameGallery">Loading games...</div>
+  </section>
+
+  <section id="submit" class="form-box" data-aos="fade-up">
+    <h2>📝 Submit Your Game</h2>
+    <form id="submitGameForm">
+      <input type="text" placeholder="Game Title" />
+      <input type="text" placeholder="Genre" />
+      <input type="text" placeholder="Platform" />
+      <input type="url" placeholder="Trailer Link" />
+      <textarea placeholder="Description"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <section id="influencers" class="feature" data-aos="fade-right">
+    <h2>🤝 Influencer Hub</h2>
+    <form id="influencerForm">
+      <input type="text" placeholder="Channel Name" />
+      <input type="url" placeholder="Channel Link" />
+      <input type="text" placeholder="Genres" />
+      <textarea placeholder="Notes"></textarea>
+      <button type="submit">Join</button>
+    </form>
+    <div class="promo-list" id="influencerList">Loading influencers...</div>
+  </section>
+
+  <section id="campaigns" class="feature" data-aos="fade-left">
+    <h2>📢 Marketing Campaigns</h2>
+    <form id="campaignForm">
+      <input type="text" placeholder="Campaign Title" />
+      <textarea placeholder="Goal & Details"></textarea>
+      <button type="submit">Create Campaign</button>
+    </form>
+    <div id="campaignList">Loading campaigns...</div>
+  </section>
+
+  <section id="chat" class="feature" data-aos="fade-up">
+    <h2>💬 Private Messaging</h2>
+    <div class="chat-box" id="chatThread">Start a chat by selecting a campaign</div>
+  </section>
+
+  <section id="dashboard" class="feature" data-aos="fade-down">
+    <h2>📊 Influencer Dashboard</h2>
+    <div class="dashboard" id="analyticsBoard">Loading stats...</div>
+  </section>
+
+  <section id="contact" class="form-box" data-aos="fade-up">
+    <h2>📬 Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" />
+      <input type="email" placeholder="Your Email" />
+      <textarea placeholder="Your Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer style="padding:2rem;background:#1e293b;color:#94a3b8;">
+    &copy; 2025 Indieglow. All rights reserved.
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    // JS for loading Firebase SDKs and initializing auth, chat, gallery, etc.
+  </script>
 </body>
 </html>
