@@ -71,6 +71,32 @@
     .cta button:hover {
       opacity: 0.9;
     }
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      padding: 0 1.5rem;
+    }
+    .member {
+      background: #1e293b;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .member img {
+      width: 100px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+    .member h3 {
+      margin-bottom: 0.5rem;
+      color: #60a5fa;
+    }
+    .member p {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
     footer {
       background: #1e293b;
       text-align: center;
@@ -89,6 +115,7 @@
   <nav>
     <a href="#features">Features</a>
     <a href="#about">About</a>
+    <a href="#team">Team</a>
     <a href="#newsletter">Newsletter</a>
   </nav>
 
@@ -115,6 +142,29 @@
     <div class="feature">
       <h2>About Indieglow</h2>
       <p>Indieglow is a platform designed to empower indie game developers by giving them the tools they need to succeed. From marketing support and influencer outreach to simplified regulatory help, we’ve got your back — so you can focus on making awesome games.</p>
+    </div>
+  </section>
+
+  <section id="team" class="features">
+    <div class="feature">
+      <h2>Meet the Team</h2>
+      <div class="team">
+        <div class="member">
+          <img src="https://via.placeholder.com/100" alt="Alex">
+          <h3>Alex Nguyen</h3>
+          <p>Founder & Product Lead</p>
+        </div>
+        <div class="member">
+          <img src="https://via.placeholder.com/100" alt="Linh">
+          <h3>Linh Tran</h3>
+          <p>Marketing & Community</p>
+        </div>
+        <div class="member">
+          <img src="https://via.placeholder.com/100" alt="Chris">
+          <h3>Chris Le</h3>
+          <p>Developer & UI/UX</p>
+        </div>
+      </div>
     </div>
   </section>
 
