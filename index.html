@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Indieglow - Let Your Game Shine</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
   <style>
     body {
       margin: 0;
@@ -22,6 +22,14 @@
       width: 200px;
       margin-bottom: 1rem;
     }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #e0e7ff;
+    }
     nav {
       background-color: #1e293b;
       padding: 1rem;
@@ -32,6 +40,9 @@
       text-decoration: none;
       margin: 0 1rem;
       font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
     .features, .gallery, .form-section {
       max-width: 960px;
@@ -45,14 +56,15 @@
       border-radius: 1rem;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
-    .form-box form input, .form-box form textarea {
-      width: 100%;
-      padding: 0.8rem;
-      margin: 0.5rem 0;
-      border-radius: 8px;
-      border: none;
+    .feature h2, .form-box h2 {
+      margin-top: 0;
+      color: #60a5fa;
     }
-    .form-box button {
+    .cta, .gallery-grid, .profile-section {
+      text-align: center;
+      margin: 3rem 0;
+    }
+    .cta button, .form-box button {
       background: linear-gradient(to right, #3b82f6, #9333ea);
       border: none;
       padding: 1rem 2rem;
@@ -61,8 +73,21 @@
       border-radius: 8px;
       cursor: pointer;
     }
-    .form-box button:hover {
+    .cta button:hover, .form-box button:hover {
       opacity: 0.9;
+    }
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      padding: 0 1.5rem;
+    }
+    .member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
     }
     .gallery-grid {
       display: grid;
@@ -75,9 +100,29 @@
       padding: 1.5rem;
       text-align: left;
     }
-    .game-card h3 {
-      margin-top: 0.5rem;
-      color: #60a5fa;
+    .game-card img {
+      width: 100%;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .form-box form input, .form-box form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      border: none;
+    }
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .filter-bar input, .filter-bar select {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      min-width: 150px;
     }
     footer {
       background: #1e293b;
@@ -96,25 +141,63 @@
   </header>
 
   <nav>
-    <a href="#gallery">Gallery</a>
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="#team">Team</a>
+    <a href="#gallery">Game Gallery</a>
     <a href="#submit">Submit Game</a>
+    <a href="#contact">Contact</a>
   </nav>
 
   <section id="gallery" class="gallery" data-aos="fade-up">
-    <h2>🎮 Live Game Gallery</h2>
-    <div id="gameGallery" class="gallery-grid"></div>
+    <h2>🎮 Featured Indie Games</h2>
+    <div class="filter-bar">
+      <input type="text" placeholder="Search by title...">
+      <select>
+        <option value="">All Genres</option>
+        <option value="Action">Action</option>
+        <option value="Puzzle">Puzzle</option>
+        <option value="RPG">RPG</option>
+      </select>
+      <select>
+        <option value="">All Platforms</option>
+        <option value="PC">PC</option>
+        <option value="Mobile">Mobile</option>
+      </select>
+    </div>
+    <div class="gallery-grid">
+      <div class="game-card" data-aos="zoom-in">
+        <img src="sample-game.jpg" alt="Sample Game">
+        <h3>Sample Game Title</h3>
+        <p>Genre: Action | Platform: PC</p>
+        <p>A fast-paced action game where you fight to save your digital world.</p>
+        <a href="#" style="color:#60a5fa">View on Steam</a>
+      </div>
+    </div>
   </section>
 
   <section id="submit" class="form-section" data-aos="fade-up">
     <div class="form-box">
       <h2>Submit Your Game</h2>
-      <form id="gameForm">
-        <input type="text" name="title" placeholder="Game Title" required>
-        <input type="text" name="genre" placeholder="Genre" required>
-        <input type="text" name="platform" placeholder="Platform" required>
-        <input type="url" name="link" placeholder="Link to your game (Steam, itch.io, etc.)" required>
-        <textarea name="description" rows="4" placeholder="Short game description" required></textarea>
+      <form action="https://formspree.io/f/moqodwkk" method="POST">
+        <input type="text" name="game-name" placeholder="Game Title" required>
+        <input type="text" name="genre" placeholder="Genre">
+        <input type="text" name="platform" placeholder="Platform (PC, Mobile, etc.)">
+        <input type="url" name="trailer" placeholder="Trailer or YouTube Link">
+        <textarea name="description" rows="4" placeholder="Short description of your game" required></textarea>
         <button type="submit">Submit Game</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="contact" class="form-section" data-aos="fade-up">
+    <div class="form-box">
+      <h2>Contact Us</h2>
+      <form action="https://formspree.io/f/moqodwkk" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
       </form>
     </div>
   </section>
@@ -123,61 +206,41 @@
     &copy; 2025 Indieglow. Helping indie developers shine.
   </footer>
 
-  <!-- Firebase & AOS Scripts -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init();
+  <script>AOS.init();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init();
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyB-7YL_Z6UGbWTRCgiJymVmVw7ZiGmPO8w",
-      authDomain: "indieglow-d382c.firebaseapp.com",
-      projectId: "indieglow-d382c",
-      storageBucket: "indieglow-d382c.firebasestorage.app",
-      messagingSenderId: "794649593569",
-      appId: "1:794649593569:web:9d5bddce62d77e4ac459a0",
-      measurementId: "G-0YBV02HW2F"
-    };
+  const searchInput = document.querySelector('.filter-bar input');
+  const genreSelect = document.querySelector('.filter-bar select:nth-of-type(1)');
+  const platformSelect = document.querySelector('.filter-bar select:nth-of-type(2)');
+  const gameCards = document.querySelectorAll('.game-card');
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+  function filterGames() {
+    const search = searchInput.value.toLowerCase();
+    const genre = genreSelect.value;
+    const platform = platformSelect.value;
 
-    const form = document.getElementById('gameForm');
-    const gallery = document.getElementById('gameGallery');
+    gameCards.forEach(card => {
+      const title = card.querySelector('h3').textContent.toLowerCase();
+      const details = card.querySelector('p').textContent;
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      const game = {
-        title: data.get('title'),
-        genre: data.get('genre'),
-        platform: data.get('platform'),
-        link: data.get('link'),
-        description: data.get('description'),
-        timestamp: new Date()
-      };
-      await db.collection('games').add(game);
-      form.reset();
-      loadGames();
+      const matchesTitle = title.includes(search);
+      const matchesGenre = genre ? details.includes(genre) : true;
+      const matchesPlatform = platform ? details.includes(platform) : true;
+
+      if (matchesTitle && matchesGenre && matchesPlatform) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
     });
+  }
 
-    async function loadGames() {
-      gallery.innerHTML = '';
-      const snapshot = await db.collection('games').orderBy('timestamp', 'desc').get();
-      snapshot.forEach(doc => {
-        const g = doc.data();
-        gallery.innerHTML += `
-          <div class="game-card" data-aos="fade-up">
-            <h3>${g.title}</h3>
-            <p><strong>Genre:</strong> ${g.genre} | <strong>Platform:</strong> ${g.platform}</p>
-            <p>${g.description}</p>
-            <a href="${g.link}" style="color:#60a5fa" target="_blank">Play Now</a>
-          </div>`;
-      });
-    }
-
-    loadGames();
-  </script>
+  searchInput.addEventListener('input', filterGames);
+  genreSelect.addEventListener('change', filterGames);
+  platformSelect.addEventListener('change', filterGames);
+</script>
 </body>
 </html>
