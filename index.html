@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Indieglow - Let Your Game Shine</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <style>
     body {
       margin: 0;
@@ -21,14 +22,6 @@
       width: 200px;
       margin-bottom: 1rem;
     }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
-      color: #e0e7ff;
-    }
     nav {
       background-color: #1e293b;
       padding: 1rem;
@@ -40,30 +33,26 @@
       margin: 0 1rem;
       font-weight: bold;
     }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .features {
+    .features, .gallery, .form-section {
       max-width: 960px;
       margin: 2rem auto;
       padding: 0 1.5rem;
     }
-    .feature {
+    .feature, .form-box {
       background: #1e293b;
       padding: 2rem;
       margin-bottom: 1.5rem;
       border-radius: 1rem;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
-    .feature h2 {
-      margin-top: 0;
-      color: #60a5fa;
+    .form-box form input, .form-box form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      border: none;
     }
-    .cta {
-      text-align: center;
-      margin: 3rem 0;
-    }
-    .cta button {
+    .form-box button {
       background: linear-gradient(to right, #3b82f6, #9333ea);
       border: none;
       padding: 1rem 2rem;
@@ -72,36 +61,23 @@
       border-radius: 8px;
       cursor: pointer;
     }
-    .cta button:hover {
+    .form-box button:hover {
       opacity: 0.9;
     }
-    .team {
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      padding: 0 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
-    .member {
+    .game-card {
       background: #1e293b;
-      padding: 1.5rem;
       border-radius: 1rem;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding: 1.5rem;
+      text-align: left;
     }
-    .member img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-      object-fit: cover;
-    }
-    .member h3 {
-      margin-bottom: 0.5rem;
+    .game-card h3 {
+      margin-top: 0.5rem;
       color: #60a5fa;
-    }
-    .member p {
-      font-size: 0.9rem;
-      color: #cbd5e1;
     }
     footer {
       background: #1e293b;
@@ -120,72 +96,88 @@
   </header>
 
   <nav>
-    <a href="#features">Features</a>
-    <a href="#about">About</a>
-    <a href="#team">Team</a>
-    <a href="#newsletter">Newsletter</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#submit">Submit Game</a>
   </nav>
 
-  <section id="features" class="features">
-    <div class="feature">
-      <h2>🌟 Showcase Your Game</h2>
-      <p>Create a profile for your indie game with trailers, screenshots, and a compelling story.</p>
-    </div>
-    <div class="feature">
-      <h2>📢 Collaborate with Influencers</h2>
-      <p>Connect with streamers and content creators to promote your game and build buzz.</p>
-    </div>
-    <div class="feature">
-      <h2>📊 Built-in Analytics</h2>
-      <p>Track downloads, views, and influencer impact in real time.</p>
-    </div>
-    <div class="feature">
-      <h2>📘 Regulatory Resources</h2>
-      <p>Access simplified guides for publishing rules by platform and country.</p>
-    </div>
+  <section id="gallery" class="gallery" data-aos="fade-up">
+    <h2>🎮 Live Game Gallery</h2>
+    <div id="gameGallery" class="gallery-grid"></div>
   </section>
 
-  <section id="about" class="features">
-    <div class="feature">
-      <h2>About Indieglow</h2>
-      <p>Indieglow is a platform designed to empower indie game developers by giving them the tools they need to succeed. From marketing support and influencer outreach to simplified regulatory help, we’ve got your back — so you can focus on making awesome games.</p>
+  <section id="submit" class="form-section" data-aos="fade-up">
+    <div class="form-box">
+      <h2>Submit Your Game</h2>
+      <form id="gameForm">
+        <input type="text" name="title" placeholder="Game Title" required>
+        <input type="text" name="genre" placeholder="Genre" required>
+        <input type="text" name="platform" placeholder="Platform" required>
+        <input type="url" name="link" placeholder="Link to your game (Steam, itch.io, etc.)" required>
+        <textarea name="description" rows="4" placeholder="Short game description" required></textarea>
+        <button type="submit">Submit Game</button>
+      </form>
     </div>
-  </section>
-
-  <section id="team" class="features">
-    <div class="feature">
-      <h2>Meet the Team</h2>
-      <div class="team">
-        <div class="member">
-          <img src="thach-nguyen.jpg" alt="Thach Nguyen">
-          <h3>Thach Nguyen</h3>
-          <p>Founder & Product Lead</p>
-        </div>
-        <div class="member">
-          <img src="duyen-nguyen.jpg" alt="Duyen Nguyen">
-          <h3>Duyen Nguyen</h3>
-          <p>Marketing & Community</p>
-        </div>
-        <div class="member">
-          <img src="ryan-tran.jpg" alt="Ryan Tran">
-          <h3>Ryan Tran</h3>
-          <p>Developer & UI/UX</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="newsletter" class="cta">
-    <h2>Stay in the Loop</h2>
-    <p>Subscribe to get updates, tips, and featured games.</p>
-    <form action="https://formspree.io/f/moqodwkk" method="POST">
-      <input type="email" name="email" placeholder="Enter your email" required style="padding: 0.5rem; width: 250px; border-radius: 4px; border: none; margin-right: 10px;">
-      <button type="submit">Subscribe</button>
-    </form>
   </section>
 
   <footer>
     &copy; 2025 Indieglow. Helping indie developers shine.
   </footer>
+
+  <!-- Firebase & AOS Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB-7YL_Z6UGbWTRCgiJymVmVw7ZiGmPO8w",
+      authDomain: "indieglow-d382c.firebaseapp.com",
+      projectId: "indieglow-d382c",
+      storageBucket: "indieglow-d382c.firebasestorage.app",
+      messagingSenderId: "794649593569",
+      appId: "1:794649593569:web:9d5bddce62d77e4ac459a0",
+      measurementId: "G-0YBV02HW2F"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const form = document.getElementById('gameForm');
+    const gallery = document.getElementById('gameGallery');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const game = {
+        title: data.get('title'),
+        genre: data.get('genre'),
+        platform: data.get('platform'),
+        link: data.get('link'),
+        description: data.get('description'),
+        timestamp: new Date()
+      };
+      await db.collection('games').add(game);
+      form.reset();
+      loadGames();
+    });
+
+    async function loadGames() {
+      gallery.innerHTML = '';
+      const snapshot = await db.collection('games').orderBy('timestamp', 'desc').get();
+      snapshot.forEach(doc => {
+        const g = doc.data();
+        gallery.innerHTML += `
+          <div class="game-card" data-aos="fade-up">
+            <h3>${g.title}</h3>
+            <p><strong>Genre:</strong> ${g.genre} | <strong>Platform:</strong> ${g.platform}</p>
+            <p>${g.description}</p>
+            <a href="${g.link}" style="color:#60a5fa" target="_blank">Play Now</a>
+          </div>`;
+      });
+    }
+
+    loadGames();
+  </script>
 </body>
 </html>
