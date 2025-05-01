@@ -79,7 +79,6 @@
       margin-bottom: 1.2rem;
     }
 
-    /* TEAM SECTION */
     .team-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -124,7 +123,6 @@
       font-size: 0.95rem;
     }
 
-    /* FORM STYLING */
     .form-box {
       background-color: var(--bg-medium);
       border-radius: var(--radius);
@@ -170,6 +168,33 @@
       display: none;
     }
 
+    .gallery-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .game-card {
+      background: var(--bg-light);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      width: 100%;
+      max-width: 320px;
+      text-align: left;
+    }
+
+    .game-card h3 {
+      color: var(--text-primary);
+      margin: 0.5rem 0;
+    }
+
+    .game-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
     footer {
       padding: 2rem;
       background: var(--bg-medium);
@@ -196,6 +221,7 @@
     <a href="#about">About</a>
     <a href="#team">Team</a>
     <a href="#submit">Submit</a>
+    <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -233,6 +259,11 @@
     <div class="success-message" id="successMsg">✅ Your game has been submitted!</div>
   </section>
 
+  <section id="gallery" class="feature" data-aos="fade-up">
+    <h2>🎮 Game Gallery</h2>
+    <div class="gallery-grid" id="gameGallery">Loading games...</div>
+  </section>
+
   <section id="contact" class="form-box" data-aos="fade-up">
     <h2>📬 Contact Us</h2>
     <form>
@@ -248,71 +279,70 @@
   </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
   <script>
     AOS.init();
 
-    // Game submission success logic
-    document.getElementById('submitGameForm').addEventListener('submit', function(e) {
+    const firebaseConfig = {
+      apiKey: "AIzaSyXXXXXXX",
+      authDomain: "indieglow.firebaseapp.com",
+      projectId: "indieglow",
+      storageBucket: "indieglow.appspot.com",
+      messagingSenderId: "1234567890",
+      appId: "1:1234567890:web:abcdefg1234567"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    document.getElementById('submitGameForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const title = document.getElementById('title').value.trim();
       const genre = document.getElementById('genre').value.trim();
       const platform = document.getElementById('platform').value.trim();
+      const trailer = document.getElementById('trailer').value.trim();
       const description = document.getElementById('description').value.trim();
 
       if (title && genre && platform && description) {
-        document.getElementById('successMsg').style.display = 'block';
-        setTimeout(() => {
-          document.getElementById('successMsg').style.display = 'none';
-          e.target.reset();
-        }, 3000);
+        try {
+          await db.collection('games').add({
+            title,
+            genre,
+            platform,
+            trailer,
+            description,
+            submittedAt: new Date()
+          });
+          document.getElementById('successMsg').style.display = 'block';
+          setTimeout(() => {
+            document.getElementById('successMsg').style.display = 'none';
+            e.target.reset();
+          }, 3000);
+        } catch (error) {
+          alert('❌ Failed to submit: ' + error.message);
+        }
       }
     });
+
+    // Load games into gallery
+    const gameGallery = document.getElementById('gameGallery');
+    db.collection('games').orderBy('submittedAt', 'desc').onSnapshot(snapshot => {
+      gameGallery.innerHTML = '';
+      snapshot.forEach(doc => {
+        const game = doc.data();
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `
+          <h3>${game.title}</h3>
+          <p><strong>Genre:</strong> ${game.genre}</p>
+          <p><strong>Platform:</strong> ${game.platform}</p>
+          ${game.trailer ? `<p><a href="${game.trailer}" target="_blank">Watch Trailer</a></p>` : ''}
+          <p>${game.description}</p>
+        `;
+        gameGallery.appendChild(card);
+      });
+    });
   </script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
-<script>
-  // Initialize Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyXXXXXXX",
-    authDomain: "indieglow.firebaseapp.com",
-    projectId: "indieglow",
-    storageBucket: "indieglow.appspot.com",
-    messagingSenderId: "1234567890",
-    appId: "1:1234567890:web:abcdefg1234567"
-  };
-
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  // Game form submit
-  document.getElementById('submitGameForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const title = document.getElementById('title').value.trim();
-    const genre = document.getElementById('genre').value.trim();
-    const platform = document.getElementById('platform').value.trim();
-    const trailer = document.getElementById('trailer').value.trim();
-    const description = document.getElementById('description').value.trim();
-
-    if (title && genre && platform && description) {
-      try {
-        await db.collection('games').add({
-          title,
-          genre,
-          platform,
-          trailer,
-          description,
-          submittedAt: new Date()
-        });
-        document.getElementById('successMsg').style.display = 'block';
-        setTimeout(() => {
-          document.getElementById('successMsg').style.display = 'none';
-          e.target.reset();
-        }, 3000);
-      } catch (error) {
-        alert('❌ Failed to submit: ' + error.message);
-      }
-    }
-  });
-</script>
 </body>
 </html>
